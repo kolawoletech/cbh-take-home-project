@@ -10,13 +10,11 @@ You will be graded on the exhaustiveness and quality of your unit tests, the dep
 
 ## Your Explanation Here
 
-I refactored the
-I refactored the code to be precise and parition
+I refactored the code to be precise and add a check for the partition key's type and stringifies it if it's not a string. This should ensure that the test case for "should hash a stringified version of the key when partition key is not a string" passes.
 This test covers the following scenarios:
-**_ I renamed the function for the seek of what it does _**
 
-1. When a partition key is provided in the event object, it should return that key
-2. When a partition key is not provided in the event object, it should hash the event data and return the hash as the key
-3. When the partition key is not a string, it should hash a stringified version of the key
-4. When the partition key exceeds the maximum length, it should hash the key
-5. When no event is provided, it should return the default partition key 0.
+1. It should return a deterministic partition key when no partition key is provided
+2. It should hash a stringified version of the key when partition key is not a string.
+3. it should return a trivial partition key when event is undefined
+4. It should hash the partition key when its length exceeds the maximum allowed length
+5. it should return the partition key when it is already a string and its length is within the maximum allowed length.
